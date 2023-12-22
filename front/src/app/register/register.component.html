@@ -1,0 +1,148 @@
+<div class="flex items-center justify-center bg-indigo-600">
+  <div class="  p-10  ">
+
+    <h1 tabindex="0" role="heading" aria-label="profile information" class="focus:outline-none text-2xl font-bold text-white mt-12">Merci de renseigner vos informations pour la<br /> creation de votre compte</h1>
+    <div class="mt-6"><hr></div>
+
+    <form method="post" [formGroup]="registerFormGroup" (ngSubmit)="handleRegisterUser()">
+    <div class="mt-8 md:flex items-center">
+      <div class="flex flex-col">
+        <label class="mb-3  leading-none text-white font-bold">Prénom(s)</label>
+        <input formControlName="first_name" type="name" tabindex="0" aria-label="Enter first name" class="w-64 bg-gray-100  font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"/>
+        <span class="text-red-300 font-bold"
+              *ngIf="registerFormGroup.controls['first_name'].touched
+            && registerFormGroup.controls['first_name'].errors
+            && registerFormGroup.controls['first_name'].errors!['required']">
+            Le prenom est requis
+          </span>
+      </div>
+      <div class="flex flex-col md:ml-12 md:mt-0 mt-8">
+        <label class="mb-3  leading-none text-white font-bold">Nom de famille</label>
+        <input formControlName="last_name" type="name" tabindex="0" aria-label="Enter last name" class="w-64   font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" />
+        <span class="text-red-300 font-bold"
+              *ngIf="registerFormGroup.controls['last_name'].touched
+            && registerFormGroup.controls['last_name'].errors
+            && registerFormGroup.controls['last_name'].errors!['required']">
+            Le nom est requis
+          </span>
+      </div>
+    </div>
+    <div class="mt-12 md:flex items-center font-bold">
+      <div class="flex flex-col">
+        <label class="mb-3  leading-none text-white">CIN</label>
+        <input formControlName="cin" type="text" tabindex="0" aria-label="Enter cin" class="w-64 bg-gray-100  font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"/>
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['cin'].touched
+            && registerFormGroup.controls['cin'].errors
+            && registerFormGroup.controls['cin'].errors!['required']">
+            CIN est requis
+        </span>
+      </div>
+      <div class="flex flex-col md:ml-12 md:mt-0 mt-8">
+        <label class="mb-3  leading-none text-white">Date de naissance</label>
+        <input formControlName="date_naissance" type="date" tabindex="0" aria-label="Enter date" class="w-64  font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" />
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['date_naissance'].touched
+            && registerFormGroup.controls['date_naissance'].errors
+            && registerFormGroup.controls['date_naissance'].errors!['required']">
+            La date de naissance est requise
+        </span>
+      </div>
+    </div>
+    <div class="mt-12 md:flex items-center font-bold">
+      <div class="flex flex-col">
+        <label class="mb-3  leading-none text-white">Genre</label>
+        <select formControlName="genre" id="genre" class="w-64  font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+          <option value="Feminin">Féminin</option>
+          <option value="Masculin">Masculin</option>
+        </select>
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['genre'].touched
+            && registerFormGroup.controls['genre'].errors
+            && registerFormGroup.controls['genre'].errors!['required']">
+            Le genre est requis
+        </span>
+      </div>
+      <div class="flex flex-col md:ml-12 md:mt-0 mt-8">
+        <label class="mb-3  leading-none text-white">Photo</label>
+        <input formControlName="image" type="file" (change)="uploadfile($event)" tabindex="0" aria-label="Enter photo" class="w-64 bg-gray-100 font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" value="San Diego, CA, USA" />
+      </div>
+    </div>
+    <div class="mt-6"><hr></div>
+    <div class="mt-12 md:flex items-center font-bold">
+      <div class="flex flex-col" *ngIf="departs | async as departlist">
+        <label class="mb-3  leading-none text-white">Département</label>
+        <select formControlName="departement_id" id="depart" class="w-64  font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" >
+          <option *ngFor="let depart of departlist.data " value="{{depart.id}}">{{depart.depart_name}}</option>
+        </select>
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['departement_id'].touched
+            && registerFormGroup.controls['departement_id'].errors
+            && registerFormGroup.controls['departement_id'].errors!['required']">
+            Le département est requis
+        </span>
+      </div>
+      <div class="flex flex-col md:ml-12 md:mt-0 mt-8">
+        <label class="mb-3  leading-none text-white">Poste</label>
+        <input formControlName="poste" type="name" tabindex="0" aria-label="Enter poste" class="w-64 bg-gray-100  font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" />
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['poste'].touched
+            && registerFormGroup.controls['poste'].errors
+            && registerFormGroup.controls['poste'].errors!['required']">
+            Le poste est requis
+        </span>
+      </div>
+    </div>
+    <div class="mt-6"><hr></div>
+    <div class="mt-12 md:flex items-center font-bold">
+      <div class="flex flex-col">
+        <label class="mb-3  leading-none text-white">Email</label>
+        <input formControlName="email" type="email" tabindex="0" aria-label="Enter email" class="w-64 bg-gray-100 font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"/>
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['email'].touched
+            && registerFormGroup.controls['email'].errors
+            && registerFormGroup.controls['email'].errors!['email']">
+            L'adresse mail n'est pas valide
+        </span>
+      </div>
+      <div class="flex flex-col md:ml-12 md:mt-0 mt-8">
+        <label class="mb-3  leading-none text-white">Télephone</label>
+        <input formControlName="phone" type="text" tabindex="0" aria-label="Enter phone" class="w-64 bg-gray-100 font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" />
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['phone'].touched
+            && registerFormGroup.controls['phone'].errors
+            && registerFormGroup.controls['phone'].errors!['required']">
+            Le numero de telephone est requis
+        </span>
+      </div>
+    </div>
+    <div class="mt-12 md:flex items-center font-bold">
+      <div class="flex flex-col">
+        <label class="mb-3  leading-none text-white">Mot de passe</label>
+        <input formControlName="password" type="password" tabindex="0" aria-label="Enter password" class="w-64 bg-gray-100 font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" />
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['password'].touched
+            && registerFormGroup.controls['password'].errors
+            && registerFormGroup.controls['password'].errors!['required']">
+            Le mot de passe est requis
+        </span>
+      </div>
+      <div class="flex flex-col md:ml-12 md:mt-0 mt-8">
+        <label class="mb-3  leading-none text-white">Confirmer le mot de passe</label>
+        <input formControlName="password_confirmation" type="password" tabindex="0" aria-label="Enter password confirmation" class="w-64 bg-gray-100 font-medium leading-none text-gray-800 p-3 border rounded border-gray-200" />
+        <span class="text-red-300"
+              *ngIf="registerFormGroup.controls['password_confirmation'].touched
+            && registerFormGroup.controls['password_confirmation'].errors
+            && registerFormGroup.controls['password_confirmation'].errors!['required']">
+            Veuillez confirmer le mot de passe
+        </span>
+      </div>
+    </div>
+    <div class="mt-6"><hr></div>
+    <button [disabled]="!registerFormGroup.valid" role="button" aria-label="Next step" class="flex items-center justify-center py-4 px-7 focus:outline-none bg-white border rounded border-gray-400 mt-7 md:mt-14 hover:bg-gray-100  focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
+      <span class="  text-center text-green-700 capitalize font-bold">ENREGISTRER</span>
+    </button>
+    </form>
+  </div>
+
+</div>

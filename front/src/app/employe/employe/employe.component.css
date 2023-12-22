@@ -1,0 +1,22 @@
+.mh_holidays label.text-gray-800.dark\:text-gray-100.text-sm.font-bold.leading-tight.tracking-normal.mb-2 {
+    color: black !important;
+}
+
+.mh_holidays input.focus\:outline-none.focus\:border.focus\:border-indigo-700.font-normal.w-64.h-10.flex.items-center.pl-3.text-sm.rounded.border.dark\:bg-gray-800.bg-white.shadow.ng-untouched.ng-pristine.ng-valid {
+    background: transparent !important;
+}
+.mh_demande_annule {
+    display: none !important;
+}
+
+.dark\:bg-gray-900 {--tw-bg-opacity: 1;
+    background-color: transparent !important;
+}
+
+.dark\:bg-gray-800 {
+    background-color: white !important;
+}
+
+.dark\:text-gray-100 {
+    color: black !important;
+}
