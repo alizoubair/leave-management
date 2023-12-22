@@ -1,0 +1,17 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+- url: /
+  static_files: dist/leave_management_frontend/index.html
+  upload: dist/leave_management_frontend/index.html
+- url: /
+  static_dir: dist/leave_management_frontend
+
+skip_files:
+  - node_modules/
+  - src/
+  - ^(.*/)?\..*$
+  - ^(.*/)?.*\.json$
+  - ^(.*/)?.*\.md$
+  - ^(.*/)?.*\.yaml$
